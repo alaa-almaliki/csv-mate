@@ -1,0 +1,21 @@
+{
+  "name": "alaa-almaliki/csv-mate",
+  "type": "library",
+  "homepage": "https://github.com/alaa-almaliki/csv-mate",
+  "license": "MIT",
+  "keywords": ["csv","PHP CSV"],
+  "authors": [
+    {
+      "name": "Alaa Al-Maliki",
+      "email": "alaa.almaliki@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "CsvMate\\": "src/CsvMate"
+    }
+  },
+  "require": {
+    "alaa-almaliki/property-setter-config": "0.1.0"
+  }
+}
