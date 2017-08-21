@@ -31,7 +31,7 @@ class Writer extends AbstractCsv implements WriterInterface
         $fh = fopen($filePath, 'w');
 
         foreach ($data as $dataRow) {
-            $this->fputcsv($fh, $dataRow, $this->getDelimiter(), $this->getEnclosure());
+            $this->writeDataRow($fh, $dataRow, $this->getDelimiter(), $this->getEnclosure());
         }
         fclose($fh);
         return $this;
