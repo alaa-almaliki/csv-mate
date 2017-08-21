@@ -136,10 +136,17 @@ class Reader extends AbstractCsv implements ReaderInterface
     public function selectColumn($columnName)
     {
         $headers = $this->getHeaders();
-
         if ($this->hasHeaders()) {
             if (in_array($columnName, $headers)) {
                 $this->selectedColumns[array_flip($headers)[$columnName]] = $columnName;
+            } else {
+                foreach ($this->getRenamedHeaders() as $renamedHeader) {
+                    if ($renamedHeader['new_name'] == $columnName) {
+                        $idx = array_flip($headers)[$renamedHeader['original_name']];
+                        $this->selectedColumns[$idx] = $renamedHeader['original_name'];
+                        break;
+                    }
+                }
             }
         }
 
@@ -234,8 +241,6 @@ class Reader extends AbstractCsv implements ReaderInterface
             $this->headers = fgetcsv($fh, $this->lineLength, $this->delimiter, $this->enclosure);
             fclose($fh);
         }
-        $this->helper->refineData($this->headers);
-
         return $this->headers;
     }
 

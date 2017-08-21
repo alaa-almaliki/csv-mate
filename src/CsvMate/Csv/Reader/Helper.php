@@ -46,11 +46,17 @@ class Helper
             return $column;
         }
 
-        if (!in_array($column, $this->csvReader->getHeaders())) {
-            throw new CsvException($column . ' can not be found as csv header.');
+        if (in_array($column, $this->csvReader->getHeaders())) {
+            return array_flip($this->csvReader->getHeaders())[$column];
         }
 
-        return array_flip($this->csvReader->getHeaders())[$column];
+        foreach ($this->csvReader->getRenamedHeaders() as $renamedHeader) {
+            if ($renamedHeader['new_name'] == $column) {
+                return array_flip($this->csvReader->getHeaders())[$renamedHeader['original_name']];
+            }
+        }
+
+        throw new CsvException($column . ' can not be found as csv header.');
     }
 
     /**
@@ -97,11 +103,7 @@ class Helper
         $columnData = [];
         $columnIndex = $this->getColumnIndex($column);
         foreach ($this->csvReader->getData() as $item) {
-            $result =  array_map(function($item) use ($columnIndex){
-                return $item[$columnIndex];
-            }, $item);
-
-            $columnData = array_merge($columnData, $result);
+            $columnData[] = $item[$columnIndex];
         }
 
         return $columnData;
