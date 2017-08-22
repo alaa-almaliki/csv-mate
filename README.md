@@ -28,8 +28,6 @@ $associateData = $reader->getAssocData();
 print_r($associateData);
 ```
 
-
-
 ## Get one column
 ```
 $oneColumn = $reader->getColumn('policyID');
@@ -42,7 +40,7 @@ $oneColumn = $reader->getColumn(0);
 print_r($oneColumn);
 ```
 
-## Get one column with by a renamed header 
+## Get one column by a renamed header 
 ```
 $oneColumn = $reader->getColumn('policy_id');
 print_r($oneColumn);
@@ -66,7 +64,7 @@ $columns = $reader->getColumns(['policy_id', 'state_code', 'hu_site_limit', 'cou
 print_r($columns);
 ```
 
-## Add conditions to how the data should returned 
+## Add conditions to how the data should be returned 
 ### policy id in specified values
 ```
 $reader->where('policyID', ['eq' => ['119736', '448094', '206893', '333743', '172534']]);
@@ -88,15 +86,15 @@ print_r($filteredData);
 ```
 ### policy id as renamed to policy_id in specified values as associated data
 ```
-#$reader->where('policy_id', ['eq' => ['119736', '448094', '206893', '333743', '172534']]);
-#$filteredData = $reader->getAssocData();
-#print_r($filteredData);
+$reader->where('policy_id', ['eq' => ['119736', '448094', '206893', '333743', '172534']]);
+$filteredData = $reader->getAssocData();
+print_r($filteredData);
 ```
 ### county equals to CLAY COUNTY
 ```
-#$reader->where('county', ['eq' => ['CLAY COUNTY']]);
-#$filteredData = $reader->getAssocData();
-#print_r($filteredData);
+$reader->where('county', ['eq' => ['CLAY COUNTY']]);
+$filteredData = $reader->getAssocData();
+print_r($filteredData);
 ```
 ### more conditions
 ```
@@ -174,7 +172,7 @@ $dataToWrite = [
     ['Karen', 'Hostfield', 'karne.hostfield@gmail.com', 'System Architect'],
 ];
 
-#$writer = $csv->getWriteCsv(['file_path' => __DIR__ . '/dataCopy.csv']);
-#$writer->writeData($dataToWrite);
+$writer = $csv->getWriteCsv(['file_path' => __DIR__ . '/dataCopy.csv']);
+$writer->writeData($dataToWrite);
 
 ```
