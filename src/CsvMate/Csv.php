@@ -12,7 +12,7 @@ class Csv implements CsvInterface
     const TYPE_CSV_READ     = 'read_csv';
 
     /** @var array  */
-    private static $csvs = [];
+    private static $instances = [];
 
     /**
      * Gets a csv instance with type, whether a reader or writer csv class
@@ -26,11 +26,11 @@ class Csv implements CsvInterface
     {
         $class = $this->getClass($type);
         if ($singleton === true) {
-            if (!static::$csvs[$type] instanceof AbstractCsv) {
-                static::$csvs[$type] = new $class($arguments);
+            if (!array_key_exists($type, static::$instances) || !static::$instances[$type] instanceof AbstractCsv) {
+                static::$instances[$type] = new $class($arguments);
             }
 
-            return static::$csvs[$type];
+            return static::$instances[$type];
         }
 
         return new $class($arguments);

@@ -111,7 +111,7 @@ class Writer extends AbstractCsv implements WriterInterface
     protected function validateHandle($handle)
     {
         if (!is_resource($handle)) {
-            throw new CsvException('fputcsv() expects parameter 1 to be resource, ' . gettype($handle) . ' given');
+            throw new CsvException('writeDataRow() expects parameter 1 to be resource, ' . gettype($handle) . ' given');
         }
 
         return $this;

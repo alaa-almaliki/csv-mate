@@ -22,11 +22,6 @@ interface ReaderInterface
     public function getAssocData($useCache = true);
 
     /**
-     * @return mixed
-     */
-    public function reset();
-
-    /**
      * @param  string|int $column
      * @return mixed
      */
@@ -89,10 +84,4 @@ interface ReaderInterface
      * @return mixed
      */
     public function getRenamedHeaders();
-
-    /**
-     * @param  string $columnName
-     * @return mixed
-     */
-    public function addSelectedColumn($columnName);
 }

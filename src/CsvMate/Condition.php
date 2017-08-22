@@ -91,6 +91,6 @@ final class Condition
             }
         }
 
-        return $result;
+        return (bool) $result;
     }
 }

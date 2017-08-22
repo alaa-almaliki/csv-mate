@@ -192,17 +192,6 @@ class Reader extends AbstractCsv implements ReaderInterface
     }
 
     /**
-     * @param  string $columnName
-     * @return $this
-     */
-    public function addSelectedColumn($columnName)
-    {
-        $headers = $this->getHeaders();
-        $this->selectedColumns[array_flip($headers)[$columnName]] = $columnName;
-        return $this;
-    }
-
-    /**
      * Renames csv header name by a given custom name
      *
      * @param  string $name
@@ -216,17 +205,6 @@ class Reader extends AbstractCsv implements ReaderInterface
             'new_name' => $newName
         ];
 
-        return $this;
-    }
-
-    /**
-     * Resets the csv data
-     *
-     * @return $this
-     */
-    public function reset()
-    {
-        $this->data = [];
         return $this;
     }
 

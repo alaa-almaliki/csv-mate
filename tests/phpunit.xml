@@ -1,0 +1,24 @@
+<phpunit backupGlobals="false" verbose="false" syntaxCheck="true">
+    <php>
+        <ini name="error_reporting" value="-1" />
+    </php>
+    <testsuites>
+        <testsuite name="CSV Mate">
+            <directory suffix="Test.php">./</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist addUncoveredFilesFromWhitelist="true">
+            <directory>../src</directory>
+            <exclude>
+                <file>../src/CsvMate/CsvException.php</file>
+                <file>../src/CsvMate/CsvInterface.php</file>
+                <file>../src/CsvMate/Csv/WriterInterface.php</file>
+                <file>../src/CsvMate/Csv/ReaderInterface.php</file>
+            </exclude>
+        </whitelist>
+    </filter>
+    <logging>
+    <log type="coverage-html" target="../coverage" lowUpperBound="35" highLowerBound="70"/>
+</logging>
+</phpunit>
